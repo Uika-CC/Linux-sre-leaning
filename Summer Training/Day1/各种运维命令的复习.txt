@@ -1,0 +1,389 @@
+一、系统信息
+查看系统版本
+cat /etc/os-release
+uname -a
+hostnamectl
+查看主机名
+hostname
+
+修改主机名
+
+hostnamectl set-hostname web01
+查看系统运行时间
+uptime
+
+查看启动时间
+
+who -b
+
+二、CPU
+
+查看CPU信息
+
+lscpu
+
+实时查看
+
+top
+
+更好看的（如果安装）
+
+htop
+
+查看CPU数量
+
+nproc
+
+三·内存
+查看内存
+
+free -h
+
+查看详细信息
+
+cat /proc/meminfo
+
+四、磁盘
+
+查看磁盘使用率
+
+df -h
+
+查看目录大小
+
+du -sh *
+
+查看当前目录大小
+
+du -sh .
+
+查看块设备
+
+lsblk
+
+查看磁盘信息
+
+fdisk -l
+
+五、文件
+
+查看文件
+
+ls
+
+详细
+
+ls -l
+
+隐藏文件
+
+ls -la
+
+进入目录
+
+cd
+
+当前目录
+
+pwd
+
+创建目录
+
+mkdir
+
+删除
+
+rm
+
+复制
+
+cp
+
+移动
+
+mv
+
+查看文件
+
+cat
+
+分页查看
+
+less
+
+查看前十行
+
+head
+
+查看后十行
+
+tail
+
+实时日志
+
+tail -f
+
+六、权限
+
+查看权限
+
+ls -l
+
+修改权限
+
+chmod 755 file
+
+修改所属
+
+chown root:root file
+
+切换用户
+
+su -
+
+管理员执行
+
+sudo
+七、用户管理
+
+查看当前用户
+
+whoami
+
+查看登录用户
+
+who
+
+添加用户
+
+useradd
+
+设置密码
+
+passwd
+
+删除用户
+
+userdel
+
+八、网络（★★★★★）
+
+查看IP
+
+ip addr
+
+查看路由
+
+ip route
+
+查看网卡
+
+ip link
+
+查看监听端口
+
+ss -tnlp
+
+老命令
+
+netstat -tnlp
+
+测试连通
+
+ping
+
+查看DNS
+
+cat /etc/resolv.conf
+
+查看端口
+
+ss -tuln
+
+九、进程
+
+查看进程
+
+ps -ef
+
+查找进程
+
+ps -ef | grep nginx
+
+实时
+
+top
+
+结束
+
+kill PID
+
+强制结束
+
+kill -9 PID
+
+十、服务（★★★★★）
+
+查看状态
+
+systemctl status nginx
+
+启动
+
+systemctl start nginx
+
+停止
+
+systemctl stop nginx
+
+重启
+
+systemctl restart nginx
+
+重载配置
+
+systemctl reload nginx
+
+开机启动
+
+systemctl enable nginx
+
+取消启动
+
+systemctl disable nginx
+
+失败服务
+
+systemctl --failed
+十一、日志
+
+查看日志
+
+journalctl
+
+最近100行
+
+journalctl -n 100
+
+查看某个服务
+
+journalctl -u nginx
+
+实时
+
+journalctl -f
+
+今天日志
+
+journalctl --since today
+
+十二、软件安装
+
+Ubuntu
+
+apt update
+apt install nginx
+
+CentOS
+
+yum install nginx
+
+查看安装
+
+dpkg -l
+
+CentOS
+
+rpm -qa
+十三、SSH
+
+查看SSH
+
+systemctl status ssh
+
+配置
+
+vim /etc/ssh/sshd_config
+
+重启
+
+systemctl restart ssh
+
+测试
+
+ssh user@ip
+
+十四、防火墙
+
+Ubuntu
+
+ufw status
+
+放行
+
+ufw allow 80
+
+开启
+
+ufw enable
+
+CentOS
+
+firewall-cmd --list-all
+
+十五、Nginx（★★★★★）
+
+检查配置
+
+nginx -t
+
+查看版本
+
+nginx -v
+
+启动
+
+systemctl start nginx
+
+重启
+
+systemctl restart nginx
+
+重载
+
+systemctl reload nginx
+
+配置目录
+
+/etc/nginx/
+
+网站目录
+
+/var/www/html/
+
+日志
+
+tail -f /var/log/nginx/access.log
+
+错误日志
+
+tail -f /var/log/nginx/error.log
+
+十六、运维排障（★★★★★）
+
+想检查什么		常用命令
+系统负载			uptime、top
+CPU 信息			lscpu
+内存				free -h
+磁盘				df -h、du -sh
+IP 地址			ip addr
+路由				ip route
+端口监听			ss -tnlp
+进程				ps -ef
+服务状态			systemctl status
+系统日志			journalctl
+实时日志			tail -f
+网络连通			ping
+DNS 配置			cat /etc/resolv.conf
+Nginx 配置检查	nginx -t
+Nginx 错误日志	tail -f /var/log/nginx/error.log
