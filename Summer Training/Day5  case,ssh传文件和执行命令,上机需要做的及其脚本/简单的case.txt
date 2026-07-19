@@ -1,0 +1,28 @@
+#!/bin/bash
+
+service="nginx"
+
+case $1 in
+
+start)
+	sudo systemctl start $service
+	echo "$service started" ;;
+
+stop)
+	sudo systemctl stop $service
+	echo "$service stopped" ;;
+
+restart)
+	sudo systemctl restart $service
+	echo "$service restarted" ;;
+
+status)
+
+​	sudo systemctl status $service ;;
+
+*）
+
+​	echo "ERROR! Please inputting correct code"
+	echo "$0 Usage: {start|stop|restart|}" ;;
+
+esac
