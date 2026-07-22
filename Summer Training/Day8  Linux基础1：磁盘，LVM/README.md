@@ -70,3 +70,6 @@ lvcreate
 
 vgextend
 lvextend
+
+临时增加一个点：数据迁移要用rsync这个命令
+sudo rsync -av --progress /data/ /mnt/newdisk/
