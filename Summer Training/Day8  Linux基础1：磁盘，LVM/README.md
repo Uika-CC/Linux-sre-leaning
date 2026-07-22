@@ -73,3 +73,4 @@ lvextend
 
 临时增加一个点：数据迁移要用rsync这个命令
 sudo rsync -av --progress /data/ /mnt/newdisk/
+解释：上面那条命令会保留目录原来的权限，并且最厉害的地方在于，它可以实现增量同步
