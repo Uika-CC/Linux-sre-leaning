@@ -1,0 +1,101 @@
+\#导入subprocess,日志模块
+
+import subprocess,logging,psutil
+
+logging.basicConfig(
+
+​    filename="monitor.log",
+
+​    level=logging.INFO,
+
+​    format="%(asctime)s %(levelname)s %(message)s"
+
+)
+
+def mem_check():
+
+​    mem = subprocess.run(
+
+​        "free -h",
+
+​        capture_output=True,
+
+​        text=True,
+
+​        shell=True
+
+​    )
+
+​    return mem
+
+def disk_check():
+
+​    disk = subprocess.run(
+
+​        "df -h",
+
+​        capture_output=True,
+
+​        text=True,
+
+​        shell=True
+
+​    )
+
+​    return disk
+
+def cpu_check():
+
+​    cpu = subprocess.run(
+
+​        "uptime",
+
+​        capture_output=True,
+
+​        text=True,
+
+​        shell=True
+
+​    )
+
+​    return cpu
+
+def main():
+
+​    
+
+​    cpu_result = cpu_check()
+
+​    
+
+​    logging.info(
+
+​        f"CPU状态:\n{cpu_result.stdout}"
+
+​    )
+
+​    disk_result = disk_check()
+
+​    if "80%" in disk_result.stdout:
+
+​        logging.warning("磁盘空间占用率过高")
+
+​        alarm("磁盘空间占用率过高")
+
+​    logging.info(
+
+​        f"磁盘状态:\n{disk_result.stdout}"
+
+​    )
+
+​    mem_result = mem_check()
+
+​    logging.info(
+
+​        f"内存状态:\n{mem_result.stdout}"
+
+​    )
+
+​    print("文件执行成功！")
+
+main()

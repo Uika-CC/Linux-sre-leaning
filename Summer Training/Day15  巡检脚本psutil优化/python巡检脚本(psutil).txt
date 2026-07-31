@@ -1,0 +1,65 @@
+\#导入subprocess,日志模块
+
+import subprocess,logging,psutil
+
+logging.basicConfig(
+
+​    filename="monitor.log",
+
+​    level=logging.INFO,
+
+​    format="%(asctime)s %(levelname)s %(message)s"
+
+)
+
+def mem_check():
+
+​    mem = psutil.virtual_memory().percent
+
+​    return mem
+
+def disk_check():
+
+​    disk = psutil.disk_usage("/").percent
+
+​    return disk
+
+def cpu_check():
+
+​    cpu = psutil.cpu_percent()
+
+​    return cpu
+
+def main():
+
+​    
+
+​    cpu_result = cpu_check()
+
+​    
+
+​    logging.info(
+
+​        f"CPU状态:\n{cpu_result}"
+
+​    )
+
+​    disk_result = disk_check()
+
+​    logging.info(
+
+​        f"磁盘状态:\n{disk_result}"
+
+​    )
+
+​    mem_result = mem_check()
+
+​    logging.info(
+
+​        f"内存状态:\n{mem_result}"
+
+​    )
+
+​    print("文件执行成功！")
+
+main()
