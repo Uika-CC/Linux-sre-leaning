@@ -1,0 +1,21 @@
+import requests
+
+def http_check(url):
+
+​    try:
+
+​        r = requests.get(url,timeout=5)
+
+​        if r.status_code < 400:
+
+​            return "网站正常"
+
+​        else:
+
+​            return f"状态异常! 异常码:{r.status_code}"
+
+​    except Exception as e:
+
+​        return f"访问失败:{e}"
+
+print(http_check("http://127.0.0.1:8005"))
