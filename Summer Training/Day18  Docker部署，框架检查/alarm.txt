@@ -1,0 +1,27 @@
+import logging
+
+logging.basicConfig(
+
+​    filename="monitor.log",
+
+​    level=logging.WARNING,
+
+​    format="%(asctime)s %(levelname)s %(message)s"
+
+)
+
+def send_alarm(data):
+
+​    
+
+​    message = (
+
+​        f"警告:{data['name']}使用率过高"
+
+​        f"当前值:{data['value']}"
+
+​    )
+
+​    print(message)
+
+​    logging.warnning(message)
